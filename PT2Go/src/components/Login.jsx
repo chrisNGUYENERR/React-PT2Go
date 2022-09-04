@@ -1,5 +1,7 @@
 import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
+import { Link } from 'react-router-dom';
+
 
 function Login(props) {
     return (
@@ -81,10 +83,10 @@ function Login(props) {
                     </button>
                 </div>
                 <div className="text-sm">
-                    <a href="/registration" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <Link to="/registration" className="font-medium text-indigo-600 hover:text-indigo-500">
                         Need an account?
-                    </a>
-                    </div>
+                    </Link>
+                </div>
                 </form>
             </div>
             </div>
