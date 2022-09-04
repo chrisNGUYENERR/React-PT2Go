@@ -21,7 +21,7 @@ function LandingPage(props) {
     return (
         <div className='flex flex-col justify-center items-center w-full'>
             <div className='container pt-10'>
-                <AliceCarousel autoPlay infinite autoPlayInterval={3000} disableButtonsControls>
+                <AliceCarousel autoPlay infinite autoPlayInterval={3000} autoPlayStrategy="none" disableButtonsControls animationType="fadeout">
                     <img src={image1} className='sliderimg' alt='' />
                     <img src={image2} className='sliderimg' alt='' />
                     <img src={image3} className='sliderimg' alt='' />

@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 
 function Registration(props) {
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [btnText, setBtnText] = useState(true);
+
+    const togglePassword = (event) => {
+        event.preventDefault();
+        setShowPassword(!showPassword);
+        setBtnText(!btnText)
+    };
+
+
+
+
     return (
         <>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -60,19 +73,22 @@ function Registration(props) {
                                 placeholder="Email address"
                             />
                         </div>
-                        <div>
+                        <div className='relative'>
                             <label htmlFor="password" className="sr-only">
                                 Password
                             </label>
                             <input
                                 id="password"
                                 name="password"
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 autoComplete="current-password"
                                 required
-                                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 placeholder="Password"
                             />
+                            <span className='absolute inset-y-0 right-0 flex items-center pr-2'>
+                                <button className='bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label' onClick={togglePassword}>{btnText ? 'Show' : 'Hide'}</button>
+                            </span>
                         </div>
                     </div>
 
