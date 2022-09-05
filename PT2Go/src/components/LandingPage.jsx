@@ -19,23 +19,25 @@ function LandingPage(props) {
 
 
     return (
-        <div className='flex flex-col justify-center items-center w-full'>
-            <div className='container pt-10'>
-                <AliceCarousel autoPlay infinite autoPlayInterval={3000} autoPlayStrategy="none" disableButtonsControls animationType="fadeout">
-                    <img src={image1} className='sliderimg' alt='' />
-                    <img src={image2} className='sliderimg' alt='' />
-                    <img src={image3} className='sliderimg' alt='' />
-                    <img src={image4} className='sliderimg' alt='' />
-                </AliceCarousel>
-            </div>
-            <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                <div className="w-full max-w-md space-y-8" >
-                    <button 
-                        type="submit"
-                        className="group relative flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        onClick={handleClick}>
-                        Enter
-                    </button>
+        <div>
+            <div className='flex flex-col justify-center items-center w-full h-screen dark:bg-gray-800'>
+                <div className='container pt-10'>
+                    <AliceCarousel autoPlay infinite autoPlayInterval={3000} autoPlayStrategy="none" disableButtonsControls animationType="fadeout">
+                        <img src={image1} className='sliderimg' alt='' />
+                        <img src={image2} className='sliderimg' alt='' />
+                        <img src={image3} className='sliderimg' alt='' />
+                        <img src={image4} className='sliderimg' alt='' />
+                    </AliceCarousel>
+                </div>
+                <div className="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                    <div className="h-full w-full max-w-md space-y-8 dark:bg-gray-800">
+                        <button 
+                            type="submit"
+                            className="group relative flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            onClick={handleClick}>
+                            Enter
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
