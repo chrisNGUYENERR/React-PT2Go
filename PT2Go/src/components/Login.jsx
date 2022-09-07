@@ -14,8 +14,6 @@ function Login(props) {
         setBtnText(!btnText)
     };
 
-
-
     return (
         <div className='h-screen dark:bg-gray-800'>
             <div className="flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8">
