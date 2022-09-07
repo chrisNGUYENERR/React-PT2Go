@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 
 function Registration(props) {
+    const [firstname, setFirstName] = useState('')
+    const [lastname,setLastName] = useState('')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
+
+    async function registerUser(e){
+        e.preventDefault()
+        const response = await fetch('http://localhost:1337/api/register',{
+            method: 'POST',
+            headers : {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                firstname,
+                lastname,
+				email,
+				password
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+    }
+    
     return (
         <>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-md space-y-8">
+            <div className="w-full max-w-md space-y-8" onSubmit={registerUser}>
                 <div>
                 <img
                     className="mx-auto h-12 w-auto"
@@ -24,6 +47,8 @@ function Registration(props) {
                             First name
                         </label>
                         <input
+                            value={firstname}
+                            onChange={(e)=>{setFirstName(e.target.value)}}
                             id="first-name"
                             name="first-name"
                             type="text"
@@ -37,6 +62,8 @@ function Registration(props) {
                             Last name
                         </label>
                         <input
+                            value={lastname}
+                            onChange={(e)=>{setLastName(e.target.value)}}
                             id="last-name"
                             name="last-name"
                             type="text"
@@ -50,6 +77,8 @@ function Registration(props) {
                             Email address
                         </label>
                         <input
+                            value={email}
+                            onChange={(e)=>{setEmail(e.target.value)}}
                             id="email-address"
                             name="email"
                             type="email"
@@ -64,6 +93,8 @@ function Registration(props) {
                             Password
                         </label>
                         <input
+                            value={password}
+                            onChange={(e)=>{setPassword(e.target.value)}}
                             id="password"
                             name="password"
                             type="password"
