@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'PT2Go', href: '#', current: true },
+  { name: 'PT2Go', href: '/', current: true },
   { name: 'Exercises', href: '#', current: false },
   { name: 'My Stuff', href: '#', current: false },
   // { name: 'Calendar', href: '#', current: false },
@@ -15,6 +15,14 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+
+  let toggleDarkMode = () => {
+    // if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.toggle('dark')
+    // }
+  }
+
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -128,6 +136,18 @@ export default function NavBar() {
                   </Transition>
                 </Menu>
               </div>
+              <div className="toggle-theme-wrapper pl-3">
+                  <label className="toggle-theme" htmlFor="checkbox">
+                    <input
+                      className='hidden'
+                      type="checkbox"
+                      id="checkbox"
+                      onChange={toggleDarkMode}
+                    />
+                    <div className="slider round"></div>
+                  </label>
+              </div>
+
             </div>
           </div>
 
