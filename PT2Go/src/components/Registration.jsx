@@ -99,7 +99,7 @@ function Registration(props) {
                             placeholder="Email address"
                         />
                        </div>
-                       <div>
+                       <div className='relative'>
                            <label htmlFor="password" className="sr-only">
                               Password
                           </label>

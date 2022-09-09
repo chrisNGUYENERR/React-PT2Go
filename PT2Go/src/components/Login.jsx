@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 
 function Login(props) {
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const [btnText, setBtnText] = useState(true);
 
@@ -14,10 +15,37 @@ function Login(props) {
         setBtnText(!btnText)
     };
 
+    const handleEmailChange =(e)=>{
+        setEmail(e.target.value)
+    }
+    const handlePassChange =(e)=>{
+        setPassword(e.target.value)
+    }
+
+    const loginUser =  async (e)=>{
+        e.preventDefault()
+        const res = await fetch('http://localhost:1337/api/login',{ //put this into middleware (redux) "dispatch(fetchUser())""
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        })
+        const data = await res.json()
+        console.log(data)
+        if(data.user){
+            alert('Login Successful')
+            window.location.href = '/dashboard'
+        }
+    };
+
     return (
         <div className='h-screen dark:bg-gray-800'>
             <div className="flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8">
-                <div className="w-full max-w-md space-y-8">
+                <div onSubmit={loginUser} className="w-full max-w-md space-y-8">
                     <div>
                         <img
                             className="mx-auto h-12 w-auto"
@@ -36,6 +64,8 @@ function Login(props) {
                                 Email address
                             </label>
                             <input
+                                value={email}
+                                onChange={handleEmailChange}
                                 id="email-address"
                                 name="email"
                                 type="email"
@@ -50,6 +80,8 @@ function Login(props) {
                                 Password
                             </label>
                             <input
+                                value={password}
+                                onChange={handlePassChange}
                                 id="password"
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
