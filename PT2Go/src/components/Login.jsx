@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
+import { useSelector , useDispatch } from 'react-redux'
 
 
 function Login(props) {
@@ -8,7 +9,12 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const [btnText, setBtnText] = useState(true);
-
+    const state = useSelector((state)=>state)
+    const loginState = useSelector((state)=>state.loginState)
+    const navigate = useNavigate()
+    console.log(loginState)
+    // console.log(state)
+    const dispatch = useDispatch()
     const togglePassword = (event) => {
         event.preventDefault();
         setShowPassword(!showPassword);
@@ -22,23 +28,11 @@ function Login(props) {
         setPassword(e.target.value)
     }
 
-    const loginUser =  async (e)=>{
+    const loginUser = (e)=>{
         e.preventDefault()
-        const res = await fetch('http://localhost:1337/api/login',{ //put this into middleware (redux) "dispatch(fetchUser())""
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        })
-        const data = await res.json()
-        console.log(data)
-        if(data.user){
-            alert('Login Successful')
-            window.location.href = '/dashboard'
+        dispatch({type:"FETCH_USER",payload:{email,password}})
+        if(loginState.isLoggedIn){
+            navigate("/dashboard");
         }
     };
 
