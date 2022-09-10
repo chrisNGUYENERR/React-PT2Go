@@ -2,6 +2,7 @@ import './App.css';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import NavBar from './components/NavBar';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { useSelector } from 'react-redux'; //hook 
 import Login from './components/Login';
 import Registration from './components/Registration';
 import LandingPage from './components/LandingPage';

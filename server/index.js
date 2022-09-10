@@ -35,7 +35,7 @@ app.post('/api/login',async (req,res)=>{
         password: req.body.password
     })
     if (user){
-        return res.json({status:'ok', user: true})
+        return res.json({status:'ok', accountInfo:{user,isLoggedIn:true}})
     }else{
         return res.json({status:'error',user: false})
     }
