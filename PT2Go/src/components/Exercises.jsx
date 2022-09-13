@@ -8,8 +8,8 @@ function Exercises(props) {
     const exerciseApi = async () => {
         const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises');
         const exercises = response.data
-        // console.log(exercises)
         setData(exercises) 
+        // console.log(exercises)
     }
 
     useEffect(() => {
@@ -29,9 +29,12 @@ function Exercises(props) {
                 <div className='w-full bg-gray-800 text-white'>
                     Exercises
                     {/* {console.log(data)} */}
-                    <h1>{data[0]?.shoulder[0]?.name}</h1>
-                    {data.map((data, integer) => {
-                        console.log(data.shoulder)
+                    {/* <h1>{data[0]?.shoulder[0]?.name}</h1> */}
+                    {data.map((data, index) => {
+                        data?.shoulder?.map((exercise) => {
+                            return  <h1>{exercise.name}</h1>
+                            // console.log(exercise.name)
+                        })
                     })}
                     
                 </div>
