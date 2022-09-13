@@ -1,23 +1,45 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
+import { useSelector , useDispatch } from 'react-redux'
 
 
 function Login(props) {
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const [btnText, setBtnText] = useState(true);
-
+    const state = useSelector((state)=>state)
+    const loginState = useSelector((state)=>state.loginState)
+    const navigate = useNavigate()
+    console.log(loginState)
+    // console.log(state)
+    const dispatch = useDispatch()
     const togglePassword = (event) => {
         event.preventDefault();
         setShowPassword(!showPassword);
         setBtnText(!btnText)
     };
 
+    const handleEmailChange =(e)=>{
+        setEmail(e.target.value)
+    }
+    const handlePassChange =(e)=>{
+        setPassword(e.target.value)
+    }
+
+    const loginUser = (e)=>{
+        e.preventDefault()
+        dispatch({type:"FETCH_USER",payload:{email,password}})
+        if(loginState.isLoggedIn){
+            navigate("/dashboard");
+        }
+    };
+
     return (
         <div className='h-screen dark:bg-gray-800'>
             <div className="flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8">
-                <div className="w-full max-w-md space-y-8">
+                <div onSubmit={loginUser} className="w-full max-w-md space-y-8">
                     <div>
                         <img
                             className="mx-auto h-12 w-auto"
@@ -36,6 +58,8 @@ function Login(props) {
                                 Email address
                             </label>
                             <input
+                                value={email}
+                                onChange={handleEmailChange}
                                 id="email-address"
                                 name="email"
                                 type="email"
@@ -50,6 +74,8 @@ function Login(props) {
                                 Password
                             </label>
                             <input
+                                value={password}
+                                onChange={handlePassChange}
                                 id="password"
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
