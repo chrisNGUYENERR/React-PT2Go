@@ -11,11 +11,21 @@ function Exercises(props) {
         setData(exercises) 
         // console.log(exercises)
     }
-
+    
     useEffect(() => {
         exerciseApi();
-    }, []);
+    },[]);
     
+    const renderShoulderInfo = (data) => {
+        const {shoulder} = data[0]
+        // console.log(shoulder)
+
+        let shoulderList = shoulder.map((exercise) => {
+            return <h1>{exercise.name}</h1>
+        })
+        return shoulderList
+    }
+
     return (
         <div className='h-screen dark:bg-gray-800'>
             <div className='flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8'>
@@ -28,15 +38,9 @@ function Exercises(props) {
                 </div>
                 <div className='w-full bg-gray-800 text-white'>
                     Exercises
-                    {/* {console.log(data)} */}
+                    {console.log(data)}
                     {/* <h1>{data[0]?.shoulder[0]?.name}</h1> */}
-                    {data.map((data, index) => {
-                        data?.shoulder?.map((exercise) => {
-                            return  <h1>{exercise.name}</h1>
-                            // console.log(exercise.name)
-                        })
-                    })}
-                    
+                    {data.length && renderShoulderInfo(data)}
                 </div>
             </div>
         </div>
