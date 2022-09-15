@@ -1,46 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import ExerciseCards from './ExerciseCards';
 
 function Exercises(props) {
-
-    const [data, setData] = useState([]);
-    
-    const exerciseApi = async () => {
-        const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises');
-        const exercises = response.data
-        setData(exercises) 
-        // console.log(exercises)
-    }
-    
-    useEffect(() => {
-        exerciseApi();
-    },[]);
-    
-    const renderShoulderInfo = (data) => {
-        const {shoulder} = data[0]
-        // console.log(shoulder)
-
-        let shoulderList = shoulder.map((exercise) => {
-            return <h1>{exercise.name}</h1>
-        })
-        return shoulderList
-    }
-
     return (
-        <div className='h-screen dark:bg-gray-800'>
-            <div className='flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8'>
-                <div className='flex flex-col w-3/12 bg-gray-800 text-white'>
+        <div className='flex flex-col items-center justify-center h-full dark:bg-gray-800'>
+            <div className='flex flex-row gap-3 items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8'>
+                <div className='flex flex-col h-3/4 w-1/5 bg-gray-800 text-white'>
                     Categories:
                     <a href='#'>Shoulder</a>
                     <a href='#'>Lumbar + Thoracic</a>
                     <a href='#'>Upper Limbs</a>
                     <a href='#'>Lower Limbs</a>
                 </div>
-                <div className='w-full bg-gray-800 text-white'>
-                    Exercises
-                    {console.log(data)}
-                    {/* <h1>{data[0]?.shoulder[0]?.name}</h1> */}
-                    {data.length && renderShoulderInfo(data)}
+                <div className='flex flex-row h-3/4 w-4/5 bg-gray-800'>
+                <ExerciseCards />
                 </div>
             </div>
         </div>
