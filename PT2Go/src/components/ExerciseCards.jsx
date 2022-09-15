@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import uuid from 'react-uuid';
 
-function ExerciseCards(props) {
+function ExerciseCards({data}) {
     
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [exercisesPerPage, setExercisesPerPage] = useState(8);
     
     // const exerciseApi = async () => {
     //     const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises');
@@ -12,15 +14,20 @@ function ExerciseCards(props) {
     //     setData(exercises) 
     // }
 
-    const exerciseApi = async () => {
-        const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises2');
-        const exercises = response.data
-        setData(exercises) 
-    }
+    // const exerciseApi = async () => {
+    //     const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises2');
+    //     const exercises = response.data
+    //     setData(exercises) 
+    // }
     
-    useEffect(() => {
-        exerciseApi();
-    },[]);
+    // useEffect(() => {
+    //     exerciseApi();
+    // },[]);
+
+    //Get current exercises
+    // const indexOfLastExercise = currentPage * exercisesPerPage;
+    // const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+    // const currentExercises = data.slice(indexOfFirstExercise, indexOfLastExercise);
     
     // const renderShoulderInfo = (data) => {
     //     const { shoulder } = data[0]
