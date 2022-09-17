@@ -46,7 +46,7 @@ function Login(props) {
                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                             alt="Your Company"
                         />
-                        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-400">
                             Sign in to your account
                         </h2>
                     </div>

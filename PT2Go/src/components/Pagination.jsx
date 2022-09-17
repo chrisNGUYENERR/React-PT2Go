@@ -1,6 +1,6 @@
 import React from 'react';
 
-    function Pagination({ exercisesPerPage, totalExercises, paginate }) {
+    function Pagination({ exercisesPerPage, totalExercises, paginate, currentPage }) {
         const pageNumbers = [];
         for (let i=1; i <= Math.ceil(totalExercises / exercisesPerPage); i++) {
             pageNumbers.push(i);
@@ -8,13 +8,21 @@ import React from 'react';
     
 
     return (
-        <div>
+        <div className="flex items-center bg-white px-4 py-3 sm:px-6 gap-0.5 dark:bg-gray-800">
             {pageNumbers.map(number => {
-                return <li key={number} className="text-black">
-                    <a onClick={() => paginate(number)} href='#' className='text-black'>
+                return <span key={number}>
+                    <a 
+                    onClick={() => paginate(number)} 
+                    href='#'
+                    className={
+                        currentPage === number
+                            ? "bg-white border-gray-800 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800 border-2 dark:border-gray-300"
+                            : "bg-white border-gray-300 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800"
+                        }
+                    >
                         {number}
                     </a>
-                </li>
+                </span>
             })}
         </div>
     );
