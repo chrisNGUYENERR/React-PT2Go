@@ -6,43 +6,99 @@ import Pagination from './Pagination';
 function Exercises(props) {
 
     const [data, setData] = useState([]);
+    const [filterData, setFilterData] = useState([]);
+    const [HEP, setHEP] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [exercisesPerPage] = useState(8);
 
     const exerciseApi = async () => {
         const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises2');
         const exercises = response.data
-        setData(exercises) 
+        setData(exercises)
     }
     
     useEffect(() => {
         exerciseApi();
     },[]);
 
+    useEffect(() => {
+        setFilterData(data)
+    }, [data])
+
+    useEffect(() => {
+        console.log('HEP', filterData)
+    }, [filterData]);
+
     //Get current exercises
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-    const currentExercises = data.slice(indexOfFirstExercise, indexOfLastExercise);
+    const currentExercises = filterData.slice(indexOfFirstExercise, indexOfLastExercise);
 
     //Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
+    //Categories
+    const categories = [
+        { name: 'Shoulder', href: '#'},
+        { name: 'Lumbar & Thoracic', href: '#'},
+        { name: 'Upper Limbs', href: '#'},
+        { name: 'Lower Limbs', href: '#'},
+      ]
+
+    //Filter exercises
+    const filterExercise = (event) => {
+        let newData = data.filter(area => {
+            return area.category === event.target.innerText
+        })
+        setFilterData(newData)
+    }
+
+    //Show all exercises
+    // const allExercises = () => {
+    //     setFilterData(data)
+    // }
+
+    //Add exercise to state
+    const addExercise = (e) => {
+            if (HEP.findIndex(name => name.exerciseName === e.target.name) !== -1) {
+                alert ('Sorry, exercise already added to HEP.')
+            } else {
+                setHEP(HEP => [...HEP, {exerciseName: e.target.name, exerciseImg: e.target.src, exerciseDesc: e.target.alt}])
+            }
+            console.log('HEP:', HEP)
+        }
+
+    //Remove exercise from state
+    const removeExercise = (e) => {
+        let newHEP = HEP.filter(exercises => exercises.exerciseName !== e.target.name)
+        setHEP(newHEP)
+    }
+
     return (
-        <div className='flex flex-col items-center justify-center h-full dark:bg-gray-800'>
-            <div className='flex flex-row gap-3 items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8'>
-                <div className='flex flex-col h-3/4 w-1/5 bg-gray-800 text-white'>
+        <div className='flex flex-col items-center justify-center dark:bg-gray-800'>
+            <div className='flex flex-row gap-8 items-start justify-center h-3/4 py-12 px-4 sm:px-6 lg:px-8'>
+                <div className='flex flex-col w-1/5 border-2 border-black dark:border-gray-400 dark:text-gray-400'>
                     Categories:
-                    <a href='#'>Shoulder</a>
-                    <a href='#'>Lumbar + Thoracic</a>
-                    <a href='#'>Upper Limbs</a>
-                    <a href='#'>Lower Limbs</a>
+                    {categories.map((area) => {
+                        return <a key={area.name} onClick={filterExercise} href={area.href} className=''>
+                            {area.name}
+                        </a>
+                    })}
+                    {/* <a onClick={allExercises} href=''>All</a> */}
                 </div>
-                <div className='flex flex-row h-3/4 w-4/5 bg-gray-800 '>
-                <ExerciseCards data={currentExercises}/>
+                <div className='flex flex-col w-4/5 border-2 border-black dark:border-gray-400'>
+                    <ExerciseCards data={currentExercises} addExercise={addExercise} />
+                    <Pagination exercisesPerPage={exercisesPerPage} totalExercises={filterData.length} paginate={paginate} currentPage={currentPage} />
                 </div> 
             </div>
-                <Pagination exercisesPerPage={exercisesPerPage} totalExercises={data.length} paginate={paginate} />
+            Your HEP:
+            <div className='flex flex-row justify-center items-center h-1/4 w-3/4 gap-0.5 overflow-scroll'>
+                {HEP.map((exercise) => {
+                    return <img src={exercise.exerciseImg} name={exercise.exerciseName} onClick={removeExercise} key={exercise.exerciseName} alt='' className='h-36 w-36 border-2 border-black hover:cursor-pointer hover:opacity-50' />
+                })}
+            </div>
+                <button className='bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded'>Save HEP</button>
         </div>
     );
 }

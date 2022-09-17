@@ -46,7 +46,7 @@ function Registration(props) {
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt="Your Company"
                 />
-                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-400">
                     Register an account
                 </h2>
                 </div>
@@ -129,7 +129,7 @@ function Registration(props) {
                                 required
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="agreement" className="ml-2 block text-sm text-gray-900 text-left dark:text-white">
+                            <label htmlFor="agreement" className="ml-2 block text-sm text-gray-900 text-left dark:text-gray-400">
                             I agree to the terms and conditions of PT2Go, including stating that I am a Rehabilitation Professionals such as Physical Therapists, Occupational Therapists, PTA's, COTA's, Athletic Trainers, Chiropractors, Orthopedic Doctors, Sports Doctors and more.
                             Please seek additional Medical advise before attempting any exercises or instructions on this site. PT2Go is not responsible for any outcomes of using this site.
                             </label>
