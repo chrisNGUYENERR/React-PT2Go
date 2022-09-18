@@ -14,13 +14,16 @@ app.use(express.json()) //changing everything from body to JSON.
 mongoose.connect('mongodb+srv://danny-admin:Nguyeners@cluster0.blclp5t.mongodb.net/?retryWrites=true&w=majority')
 
 app.post('/api/register',async (req,res)=>{
+    const { firstname, lastname, email, password } = req.body
     console.log(req.body)
     try {
-        const user = await User.create({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: req.body.password
+        bcrypt.hash(password, 10, (err, hash) => {
+            User.create({
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: hash
+            }) 
         }) 
     } catch (error) {
         res.json({status:'error', error:"Duplicate email"})
@@ -29,17 +32,21 @@ app.post('/api/register',async (req,res)=>{
 })
 
 app.post('/api/login',async (req,res)=>{
+    const { email, password } = req.body
     console.log(req.body)
     const user = await User.findOne({
-        email: req.body.email,
-        password: req.body.password
+        email: email
     })
-    if (user){
-        return res.json({status:'ok', accountInfo:{user,isLoggedIn:true}})
-    }else{
-        return res.json({status:'error',user: false})
-    }
-    
+    try{
+        if(await bcrypt.compare(password, user.password)){
+            return res.json({status:'ok', accountInfo:{user,isLoggedIn:true}})
+          
+        } else{
+            console.log('Not Allowed')
+        }
+       } catch {
+         res.status(500).send()
+     }
 })
 
 app.listen(1337, ()=>{
