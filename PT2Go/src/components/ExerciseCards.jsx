@@ -85,7 +85,7 @@ function ExerciseCards({ data, addExercise }) {
     // }
 
     return (
-        <div className='flex flex-row flex-wrap gap-2 w-full m-2'>
+        <div className='flex flex-row flex-wrap justify-center items-center gap-2 w-full m-2'>
             {/* {data.length && renderShoulderInfo(data)} */}
             {/* {data.length && renderLumbarInfo(data)} */}
             {/* {data.length && renderUpperlimbInfo(data)} */}
