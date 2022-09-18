@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Registration(props) {
     const [firstname, setFirstName] = useState('')
     const [lastname,setLastName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const navigate = useNavigate();
+
 
     async function registerUser(e){
         e.preventDefault()
@@ -24,6 +26,8 @@ function Registration(props) {
         })
         const data = await response.json()
         console.log(data)
+        alert('Account created!')
+        navigate('/login')
     }
     
     const [showPassword, setShowPassword] = useState(false);
@@ -108,7 +112,7 @@ function Registration(props) {
                             onChange={(e)=>{setPassword(e.target.value)}}
                             id="password"
                             name="password"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             autoComplete="current-password"
                             required
                             className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"

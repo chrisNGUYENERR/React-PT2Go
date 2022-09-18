@@ -92,13 +92,22 @@ function Exercises(props) {
                     <Pagination exercisesPerPage={exercisesPerPage} totalExercises={filterData.length} paginate={paginate} currentPage={currentPage} />
                 </div> 
             </div>
-            Your HEP:
-            <div className='flex flex-row justify-center items-center h-1/4 w-3/4 gap-0.5 overflow-scroll'>
-                {HEP.map((exercise) => {
-                    return <img src={exercise.exerciseImg} name={exercise.exerciseName} onClick={removeExercise} key={exercise.exerciseName} alt='' className='h-36 w-36 border-2 border-black hover:cursor-pointer hover:opacity-50' />
-                })}
+            <div className='flex flex-col justify-center items-center w-1/2'>
+                <div className='flex flex-row justify-between w-full'>
+                    <span>Your HEP:</span>
+                    <span>Total:{HEP.length}</span>
+                </div>
+                <div >
+                    <div className='flex flex-row justify-start h-1/4 w-full gap-0.5 overflow-auto'>
+                        {HEP.map((exercise) => {
+                            return <img src={exercise.exerciseImg} name={exercise.exerciseName} onClick={removeExercise} key={exercise.exerciseName} alt='' className='h-36 w-36 border-2 border-black hover:cursor-pointer hover:opacity-50' />
+                        })}
+                    </div>
+                </div>
             </div>
-                <button className='bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded'>Save HEP</button>
+            <div className='my-5'>
+                <button className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded'>Save HEP</button>
+            </div>
         </div>
     );
 }
