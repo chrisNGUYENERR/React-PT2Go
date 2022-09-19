@@ -8,7 +8,7 @@ import React from 'react';
     
 
     return (
-        <div className="flex items-center bg-white px-4 py-3 sm:px-6 gap-0.5 dark:bg-gray-800">
+        <div className="flex items-center bg-white px-4 py-3 sm:px-6 gap-0.5 dark:bg-gray-800 dark:text-gray-400">
             {pageNumbers.map(number => {
                 return <span key={number}>
                     <a 

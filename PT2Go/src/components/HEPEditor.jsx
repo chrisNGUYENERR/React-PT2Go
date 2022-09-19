@@ -4,7 +4,7 @@ function HEPEditor(props) {
 
 
     return (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center dark:bg-gray-800 dark:text-gray-400'>
             <div className="flex flex-row w-3/4 justify-between rounded-lg shadow-md">
                 <div className='flex items-center justify-center w-1/4'>
                     <img

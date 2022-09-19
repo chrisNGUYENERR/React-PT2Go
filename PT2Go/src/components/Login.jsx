@@ -40,7 +40,7 @@ function Login(props) {
     };
 
     return (
-        <div className='h-screen dark:bg-gray-800'>
+        <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>
             <div className="flex min-h-full items-center justify-center -mt-16 py-12 px-4 sm:px-6 lg:px-8">
                 <div onSubmit={loginUser} className="w-full max-w-md space-y-8">
                     <div>

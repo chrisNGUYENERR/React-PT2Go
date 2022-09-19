@@ -24,14 +24,14 @@ export default function NavBar() {
     // if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.toggle('dark')
       // }
-    }
-    const handleLogout = (e)=>{
-    dispatch({type:"LOGOUT_USER"})
-    navigate('/login');
+  }
+  const handleLogout = (e)=>{
+  dispatch({type:"LOGOUT_USER"})
+  navigate('/login');
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="dark:bg-gray-800 dark:text-gray-400">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

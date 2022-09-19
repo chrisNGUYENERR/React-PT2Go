@@ -11,13 +11,12 @@ export const loginMiddleware = (store)=>{
                     },
                     body: JSON.stringify({
                         email:payload.email,
-                        password:payload.password
+                        password:payload.password,
                     })
                 })
                 const data = await res.json()
-                // console.log(data)
                 if(data.accountInfo.isLoggedIn){
-                    console.log(data)
+                    console.log(data,'line 19, login middleWare')
                     //Setting login state with user data
                     store.dispatch({type:"SET_USER_LOGIN",payload:data.accountInfo})
                 }
