@@ -1,6 +1,6 @@
 import initialState from "../initialState";
 
-const loginReducer = (state = initialState, action) => {
+const combinedReducers = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_LOGIN":
         return {
@@ -8,7 +8,8 @@ const loginReducer = (state = initialState, action) => {
           firstname:action.payload.user.firstname,
           lastname:action.payload.user.lastname,
           email:action.payload.user.email,
-          isLoggedIn:action.payload.isLoggedIn
+          isLoggedIn:action.payload.isLoggedIn,
+          exercises:action.payload.user.exercises
         };
     case "RESET_STATE": //clear redux state
         console.log(action.payload,"inside reducer")
@@ -17,11 +18,18 @@ const loginReducer = (state = initialState, action) => {
           firstname: "", 
           lastname: "", 
           email: "",
-          isLoggedIn:false
+          isLoggedIn:false,
+          exercises:[]
         }
+    case "UPDATE_STORE_HEP":
+        console.log(action.payload,'actionpayload')
+        return {
+          ...state,
+          exercises:action.payload.HEP
+        };
     default:
         return state;
   }
 };
 
-export default loginReducer;
+export default combinedReducers;

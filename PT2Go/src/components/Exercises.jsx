@@ -2,14 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ExerciseCards from './ExerciseCards';
 import Pagination from './Pagination';
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 function Exercises(props) {
-
+    const emailState = useSelector((state)=>state.email)
+    const dispatch = useDispatch();
     const [data, setData] = useState([]);
     const [filterData, setFilterData] = useState([]);
     const [HEP, setHEP] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [exercisesPerPage] = useState(8);
+
+    console.log(HEP,"line 14");
+
+    const submitHandler = (e)=>{
+        e.preventDefault();
+        console.log(HEP,"inside handler")
+        dispatch({type:"ADD_HEP",payload:{HEP,emailState}})
+        dispatch({type:"UPDATE_STORE_HEP",payload:{HEP}})
+    }
+
 
     const exerciseApi = async () => {
         const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises2');
@@ -26,7 +39,7 @@ function Exercises(props) {
     }, [data])
 
     useEffect(() => {
-        console.log('HEP', filterData)
+        // console.log('HEP', filterData)
     }, [filterData]);
 
     //Get current exercises
@@ -66,7 +79,7 @@ function Exercises(props) {
             } else {
                 setHEP(HEP => [...HEP, {exerciseName: e.target.name, exerciseImg: e.target.src, exerciseDesc: e.target.alt}])
             }
-            console.log('HEP:', HEP)
+            // console.log('HEP:', HEP)
         }
 
     //Remove exercise from state
@@ -106,7 +119,7 @@ function Exercises(props) {
                 </div>
             </div>
             <div className='my-5'>
-                <button className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded'>Save HEP</button>
+                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button> //add onClick to pushes to redux state
             </div>
         </div>
     );

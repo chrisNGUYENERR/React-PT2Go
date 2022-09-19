@@ -57,15 +57,15 @@ app.post('/api/login',async (req,res)=>{
 })
 
 app.post('/api/addExercise',async(req,res)=>{
-    console.log(req.body,"inside Post request")
     const exercisesArray = req.body.exercisesArray //change this to specific exercise
     const email = req.body.email
+    // console.log(exercisesArray,email,"inside Post request")
     const updateExercises = await User.updateOne({email},{$push:{exercises:exercisesArray}})
     const user = await User.findOne({
         email
     })
-    console.log(user,'in this consolelog')
-    return res.json({status:'ok', accountExercises:{user}})
+    console.log(user,'updated user')
+    // return res.json({status:'ok', accountExercises:{user}})
 })
 
 app.listen(1337, ()=>{

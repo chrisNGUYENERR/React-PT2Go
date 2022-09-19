@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { loginMiddleware } from '../middlewares/loginMiddleware'
-import loginReducer from './reducers/loginReducer'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from "redux-persist/lib/storage";
-import thunk from 'redux-thunk';
 import { logoutMiddleware } from '../middlewares/logoutMiddleware';
 import { registrationMiddleware } from '../middlewares/registrationMiddleware';
+import { exerciseMiddleware } from '../middlewares/exerciseMiddleware';
+import combinedReducers from './reducers/combinedReducers';
 
 
 const persistConfig = {
@@ -13,7 +13,7 @@ const persistConfig = {
     storage
 }
 
-const persistedReducer = persistReducer(persistConfig,loginReducer)
+const persistedReducer = persistReducer(persistConfig,combinedReducers)
 
 const store = configureStore({
     reducer:persistedReducer,
@@ -21,7 +21,8 @@ const store = configureStore({
     middleware:[
         loginMiddleware,
         logoutMiddleware,
-        registrationMiddleware
+        registrationMiddleware,
+        exerciseMiddleware
     ]
 }) 
 
