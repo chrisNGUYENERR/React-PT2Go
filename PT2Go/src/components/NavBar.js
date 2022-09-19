@@ -2,6 +2,8 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'PT2Go', href: '/', current: true },
@@ -15,13 +17,18 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let toggleDarkMode = () => {
     // if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.toggle('dark')
-    // }
+      // }
+    }
+    const handleLogout = (e)=>{
+    dispatch({type:"LOGOUT_USER"})
+    navigate('/login');
   }
-
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -127,6 +134,7 @@ export default function NavBar() {
                           <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            onClick={handleLogout}
                           >
                             Sign out
                           </a>

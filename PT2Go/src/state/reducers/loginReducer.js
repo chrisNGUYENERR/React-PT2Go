@@ -8,7 +8,6 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_LOGIN":
-        console.log(action.payload,"inside reducer")
         return {
           ...state,
           firstname:action.payload.user.firstname,
@@ -16,6 +15,15 @@ const loginReducer = (state = initialState, action) => {
           email:action.payload.user.email,
           isLoggedIn:action.payload.isLoggedIn
         };
+    case "RESET_STATE": //clear redux state
+        console.log(action.payload,"inside reducer")
+        return {
+          ...state, 
+          firstname: "", 
+          lastname: "", 
+          email: "",
+          isLoggedIn:false
+        }
     default:
         return state;
   }

@@ -21,7 +21,6 @@ export const loginMiddleware = (store)=>{
                     //Setting login state with user data
                     store.dispatch({type:"SET_USER_LOGIN",payload:data.accountInfo})
                 }
-                    break;                   
                 default:
                     next(action)
                     break;

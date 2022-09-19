@@ -5,16 +5,20 @@ import image1 from '../assets/PT1.jpg';
 import image2 from '../assets/PT2.jpg';
 import image3 from '../assets/PT3.jpg';
 import image4 from '../assets/PT4.jpg';
-
+import { useSelector } from 'react-redux';
 
 function LandingPage(props) {
-
-    
+    const state = useSelector((state)=>state)
     const navigate = useNavigate();
 
+    //if already logged in go straight to dashboard, else go to login page
     const handleClick = (event) => {
         event.preventDefault();
+        if(state.isLoggedIn){
+            navigate('dashboard')
+        }else{
         navigate('/login');
+        }
     }
 
 
