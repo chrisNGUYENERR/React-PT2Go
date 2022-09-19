@@ -9,10 +9,11 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const [btnText, setBtnText] = useState(true);
-    const state = useSelector((state) => state);
-    const loginState = useSelector((state) => state.loginState);
-    const navigate = useNavigate();
-    console.log(loginState)
+
+    const state = useSelector((state)=>state)
+    const loginState = useSelector((state)=>state.loginState)
+    const navigate = useNavigate()
+    // console.log(loginState)
     // console.log(state)
     const dispatch = useDispatch();
 
@@ -34,6 +35,7 @@ function Login(props) {
     const loginUser = (e) => {
         e.preventDefault()
         dispatch({type:"FETCH_USER",payload:{email,password}})
+        console.log(state,'inside loginUser')
         if(loginState.isLoggedIn){
             navigate("/dashboard");
         }

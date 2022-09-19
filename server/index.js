@@ -43,7 +43,7 @@ app.post('/api/login',async (req,res)=>{
     const user = await User.findOne({
         email: email
     })
-    try {
+       try {
         if (await bcrypt.compare(password, user.password)){
             return res.json({status:'ok', accountInfo:{user,isLoggedIn:true}})
           
@@ -54,6 +54,18 @@ app.post('/api/login',async (req,res)=>{
         //  res.status(500).send()
         console.log('No account found')
      }
+})
+
+app.post('/api/addExercise',async(req,res)=>{
+    console.log(req.body,"inside Post request")
+    const exercisesArray = req.body.exercisesArray //change this to specific exercise
+    const email = req.body.email
+    const updateExercises = await User.updateOne({email},{$push:{exercises:exercisesArray}})
+    const user = await User.findOne({
+        email
+    })
+    console.log(user,'in this consolelog')
+    return res.json({status:'ok', accountExercises:{user}})
 })
 
 app.listen(1337, ()=>{
