@@ -3,9 +3,11 @@ import { useSelector } from "react-redux"
 
 function UserDashboard() {
   const loginState = useSelector((state)=>state)
-  console.log(loginState,'inside Userdashboard')
   const loggedInEmail = loginState.email
   const userSavedExercises = loginState.savedExercises
+  console.log(loginState,"line8")
+  console.log(userSavedExercises,'inside Userdashboard')
+
   const addExercise = async (e)=>{
     console.log('click')
     const res = await fetch('http://localhost:1337/api/addExercise',{
@@ -19,7 +21,7 @@ function UserDashboard() {
           })
         })
         const data = await res.json()
-  console.log(data, "inside userdashboard")
+  console.log(data, "inside AddExercise")
   }
   console.log(loginState,"outside addExercise")
 
