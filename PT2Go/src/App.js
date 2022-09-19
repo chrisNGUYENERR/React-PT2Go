@@ -8,6 +8,7 @@ import Registration from './components/Registration';
 import LandingPage from './components/LandingPage';
 import Exercises from './components/Exercises';
 import UserDashboard from './components/UserDashboard';
+import HEPEditor from './components/HEPEditor';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path='/login' element={ <Login /> } />
           <Route path='/registration' element={ <Registration /> } />
           <Route path='/exercises' element={ <Exercises /> } />
-          <Route path='/dashboard' element={<UserDashboard/>}/>
+          <Route path='/dashboard' element={<UserDashboard />} />
+          <Route path='/hepeditor' element={ <HEPEditor /> } />
         </Routes>
       </div>
     </BrowserRouter>
