@@ -7,6 +7,7 @@ const User = new mongoose.Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		quote: { type: String },
+		exercises: [],
 	},
 	{ collection: 'user-data' } //creating a table essentially 
 )
