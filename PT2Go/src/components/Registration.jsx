@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function Registration(props) {
     const [firstname, setFirstName] = useState('')
@@ -8,24 +9,11 @@ function Registration(props) {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     async function registerUser(e){
         e.preventDefault()
-        const response = await fetch('http://localhost:1337/api/register',{
-            method: 'POST',
-            headers : {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                firstname,
-                lastname,
-				email,
-				password
-            })
-        })
-        const data = await response.json()
-        console.log(data)
+        dispatch({type:"REGISTER_USER",payload:{firstname,lastname,email,password}})
         alert('Account created!')
         navigate('/login')
     }

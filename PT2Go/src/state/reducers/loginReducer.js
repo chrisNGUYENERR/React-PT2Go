@@ -1,9 +1,4 @@
-const initialState = { 
-    firstname: "", 
-    lastname: "", 
-    email: "",
-    isLoggedIn:false
-};
+import initialState from "../initialState";
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {

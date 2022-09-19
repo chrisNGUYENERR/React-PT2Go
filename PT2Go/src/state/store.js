@@ -5,6 +5,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from "redux-persist/lib/storage";
 import thunk from 'redux-thunk';
 import { logoutMiddleware } from '../middlewares/logoutMiddleware';
+import { registrationMiddleware } from '../middlewares/registrationMiddleware';
+
 
 const persistConfig = {
     key: "main-root",
@@ -18,7 +20,8 @@ const store = configureStore({
     devTools:process.env.NODE_ENV !== 'production',
     middleware:[
         loginMiddleware,
-        logoutMiddleware
+        logoutMiddleware,
+        registrationMiddleware
     ]
 }) 
 
