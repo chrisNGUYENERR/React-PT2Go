@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { Link , useNavigate } from 'react-router-dom';
-import { useSelector , useDispatch } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux';
 
 
 function Login(props) {
@@ -9,26 +9,30 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false);
     const [btnText, setBtnText] = useState(true);
+
     const state = useSelector((state)=>state)
     const loginState = useSelector((state)=>state.loginState)
     const navigate = useNavigate()
     // console.log(loginState)
     // console.log(state)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+
     const togglePassword = (event) => {
         event.preventDefault();
         setShowPassword(!showPassword);
         setBtnText(!btnText)
     };
 
-    const handleEmailChange =(e)=>{
+    const handleEmailChange = (e) => {
         setEmail(e.target.value)
-    }
-    const handlePassChange =(e)=>{
-        setPassword(e.target.value)
-    }
+    };
 
-    const loginUser = (e)=>{
+    const handlePassChange = (e) => {
+        setPassword(e.target.value)
+    };
+
+    const loginUser = (e) => {
         e.preventDefault()
         dispatch({type:"FETCH_USER",payload:{email,password}})
         console.log(state,'inside loginUser')
@@ -47,7 +51,7 @@ function Login(props) {
                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                             alt="Your Company"
                         />
-                        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-400">
                             Sign in to your account
                         </h2>
                     </div>

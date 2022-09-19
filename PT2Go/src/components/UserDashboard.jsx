@@ -22,6 +22,7 @@ function UserDashboard() {
   console.log(data, "inside userdashboard")
   }
   console.log(loginState,"outside addExercise")
+
   return (
     <div>
       Hi {loginState.firstname}

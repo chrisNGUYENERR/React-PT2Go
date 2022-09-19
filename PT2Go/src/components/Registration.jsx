@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Registration(props) {
     const [firstname, setFirstName] = useState('')
     const [lastname,setLastName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+    const navigate = useNavigate();
+
 
     async function registerUser(e){
         e.preventDefault()
@@ -24,6 +26,8 @@ function Registration(props) {
         })
         const data = await response.json()
         console.log(data)
+        alert('Account created!')
+        navigate('/login')
     }
     
     const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +50,7 @@ function Registration(props) {
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt="Your Company"
                 />
-                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-400">
                     Register an account
                 </h2>
                 </div>
@@ -108,7 +112,7 @@ function Registration(props) {
                             onChange={(e)=>{setPassword(e.target.value)}}
                             id="password"
                             name="password"
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             autoComplete="current-password"
                             required
                             className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -129,7 +133,7 @@ function Registration(props) {
                                 required
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="agreement" className="ml-2 block text-sm text-gray-900 text-left dark:text-white">
+                            <label htmlFor="agreement" className="ml-2 block text-sm text-gray-900 text-left dark:text-gray-400">
                             I agree to the terms and conditions of PT2Go, including stating that I am a Rehabilitation Professionals such as Physical Therapists, Occupational Therapists, PTA's, COTA's, Athletic Trainers, Chiropractors, Orthopedic Doctors, Sports Doctors and more.
                             Please seek additional Medical advise before attempting any exercises or instructions on this site. PT2Go is not responsible for any outcomes of using this site.
                             </label>
