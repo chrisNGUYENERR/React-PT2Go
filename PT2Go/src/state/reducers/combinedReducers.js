@@ -19,13 +19,15 @@ const combinedReducers = (state = initialState, action) => {
           lastname: "", 
           email: "",
           isLoggedIn:false,
-          exercises:[]
+          exercises:[],
+          currentHEP: []
         }
     case "UPDATE_STORE_HEP":
-        console.log(action.payload,'actionpayload')
+        console.log(action.payload.HEP,'actionpayload')
         return {
           ...state,
-          exercises:action.payload.HEP
+          exercises: action.payload.HEP,
+          currentHEP: action.payload.HEP
         };
     default:
         return state;
