@@ -2,33 +2,35 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ExerciseCards from './ExerciseCards';
 import Pagination from './Pagination';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Exercises(props) {
-    const emailState = useSelector((state)=>state.email)
-    const dispatch = useDispatch();
     const [data, setData] = useState([]);
     const [filterData, setFilterData] = useState([]);
-    const [HEP, setHEP] = useState([])
+    const [HEP, setHEP] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [exercisesPerPage] = useState(8);
+    
+    const navigate = useNavigate();
+    const emailState = useSelector((state)=>state.email);
+    const dispatch = useDispatch();
 
     console.log(HEP,"line 14");
 
     const submitHandler = (e)=>{
         e.preventDefault();
-        console.log(HEP,"inside handler")
-        dispatch({type:"ADD_HEP",payload:{HEP,emailState}})
-        dispatch({type:"UPDATE_STORE_HEP",payload:{HEP}})
+        console.log(HEP,"inside handler");
+        dispatch({type:"ADD_HEP",payload:{HEP,emailState}});
+        dispatch({type:"UPDATE_STORE_HEP",payload:{HEP}});
+        navigate('/hepeditor');
     }
-
 
     const exerciseApi = async () => {
         const response = await axios.get('https://630a50baf280658a59cd50c6.mockapi.io/exercises2');
         const exercises = response.data
         setData(exercises)
-    }
+    };
     
     useEffect(() => {
         exerciseApi();
@@ -65,7 +67,7 @@ function Exercises(props) {
             return area.category === event.target.innerText
         })
         setFilterData(newData)
-    }
+    };
 
     //Show all exercises
     // const allExercises = () => {
@@ -80,13 +82,13 @@ function Exercises(props) {
                 setHEP(HEP => [...HEP, {exerciseName: e.target.name, exerciseImg: e.target.src, exerciseDesc: e.target.alt}])
             }
             // console.log('HEP:', HEP)
-        }
+        };
 
     //Remove exercise from state
     const removeExercise = (e) => {
         let newHEP = HEP.filter(exercises => exercises.exerciseName !== e.target.name)
         setHEP(newHEP)
-    }
+    };
 
     return (
         <div className='flex flex-col items-center justify-center dark:bg-gray-800'>
@@ -106,7 +108,7 @@ function Exercises(props) {
                 </div> 
             </div>
             <div className='flex flex-col justify-center items-center w-1/2'>
-                <div className='flex flex-row justify-between w-full'>
+                <div className='flex flex-row justify-between w-full dark:text-gray-400'>
                     <span>Your HEP:</span>
                     <span>Total:{HEP.length}</span>
                 </div>
@@ -119,7 +121,8 @@ function Exercises(props) {
                 </div>
             </div>
             <div className='my-5'>
-                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button> //add onClick to pushes to redux state
+                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button> 
+                {/* add onClick to pushes to redux state */}
             </div>
         </div>
     );

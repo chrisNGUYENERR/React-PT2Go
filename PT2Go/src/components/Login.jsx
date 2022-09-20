@@ -68,7 +68,7 @@ function Login(props) {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400"
                                 placeholder="Email address"
                             />
                         </div>
@@ -84,7 +84,7 @@ function Login(props) {
                                 type={showPassword ? 'text' : 'password'}
                                 autoComplete="current-password"
                                 required
-                                className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="relative block w-full appearance-none rounded-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm dark:bg-gray-800 dark:text-gray-400"
                                 placeholder="Password"
                             />
                             <span className='absolute inset-y-0 right-0 flex items-center pr-2'>
@@ -99,9 +99,9 @@ function Login(props) {
                                 id="remember-me"
                                 name="remember-me"
                                 type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                className="h-4 w-4 rounded border-gray-400 text-indigo-600 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-400"
                             />
-                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900 dark:text-white">
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900 dark:text-gray-400">
                                 Remember me
                             </label>
                         </div>

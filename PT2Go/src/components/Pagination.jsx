@@ -16,8 +16,8 @@ import React from 'react';
                     href='#'
                     className={
                         currentPage === number
-                            ? "bg-white border-gray-800 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800 border-2 dark:border-gray-300"
-                            : "bg-white border-gray-300 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800"
+                            ? "bg-white border-gray-800 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800 dark:border-2 dark:border-gray-300"
+                            : "bg-white border-gray-300 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium dark:bg-gray-800" 
                         }
                     >
                         {number}
