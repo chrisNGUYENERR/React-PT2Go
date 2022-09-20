@@ -5,10 +5,6 @@ function ExerciseCards({ data, addExercise }) {
 
     return (
         <div className='flex flex-row flex-wrap justify-center items-center gap-2 w-full m-2'>
-            {/* {data.length && renderShoulderInfo(data)} */}
-            {/* {data.length && renderLumbarInfo(data)} */}
-            {/* {data.length && renderUpperlimbInfo(data)} */}
-            {/* {data.length && renderLowerlimbInfo(data)} */}
             {data.map((exercise) => {
                 return <div className="flex flex-col items-center bg-white rounded-lg shadow-lg" key={uuid()}>
                             <div className="p-6">
