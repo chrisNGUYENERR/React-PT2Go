@@ -3,7 +3,8 @@ const initialState = {
     lastname: "", 
     email: "",
     isLoggedIn:false,
-    exercises:[]
+    exercises:[],
+    currentHEP: []
 };
 
 export default initialState;
