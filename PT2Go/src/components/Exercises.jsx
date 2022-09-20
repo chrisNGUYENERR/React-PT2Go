@@ -119,7 +119,7 @@ function Exercises(props) {
                 </div>
             </div>
             <div className='my-5'>
-                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button> //add onClick to pushes to redux state
+                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button>
             </div>
         </div>
     );

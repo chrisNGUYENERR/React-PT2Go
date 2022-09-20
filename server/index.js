@@ -68,6 +68,17 @@ app.post('/api/addExercise',async(req,res)=>{
     // return res.json({status:'ok', accountExercises:{user}})
 })
 
+app.post('/api/deleteExercise',async(req,res)=>{
+    const exercisesArray = req.body.exercisesArray //change this to specific exercise
+    const email = req.body.email
+    const deleteExercises = await User.updateOne({email},{$pull:{exercises:exercisesArray}})
+    // const user = await User.findOne({
+    //     email
+    // })
+    // console.log(user,'updated user')
+    // return res.json({status:'ok', accountExercises:{user}})
+})
+
 app.listen(1337, ()=>{
     console.log('Server is listening on 1337')
 })

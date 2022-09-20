@@ -1,17 +1,21 @@
 import React from 'react'
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 function UserDashboard() {
   const loginState = useSelector((state)=>state)
-
   console.log(loginState,"outside addExercise")
-
+  const dispatch = useDispatch();
+  const deleteHandler=(e)=>{
+    e.preventDefault();
+    //which HEP to delete 
+    dispatch({type:"DELETE_HEP",payload:{}})
+  }
   return (
     <div >
       Hi {loginState.firstname}
-      <button type="submit" 
-            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            />
+      <div className='my-5'>
+                <button onClick={deleteHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button>
+            </div>
     </div>
   )
 }
