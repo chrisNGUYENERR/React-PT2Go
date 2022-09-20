@@ -31,11 +31,12 @@ export default function NavBar() {
   }
 
   return (
+    <div className='w-screen '>
     <Disclosure as="nav" className="dark:bg-gray-800 dark:text-gray-400">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between bg-gray-800">
+          <div className="mx-auto w-screen">
+            <div className="relative flex h-16 w-full items-center justify-between bg-gray-800">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -48,7 +49,7 @@ export default function NavBar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+                {/* <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
@@ -59,7 +60,7 @@ export default function NavBar() {
                     src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
                     alt="Workflow"
                   />
-                </div>
+                </div> */}
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -88,10 +89,10 @@ export default function NavBar() {
                 </button> */}
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative ml-3 z-10">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
+                      {/* <span className="sr-only">Open user menu</span> */}
                       <img
                         className="h-8 w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -143,8 +144,7 @@ export default function NavBar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </div>
-              <div className="toggle-theme-wrapper pl-3">
+              <div className="toggle-theme-wrapper pl-3 pr-3">
                   <label className="toggle-theme" htmlFor="checkbox">
                     <input
                       className='hidden'
@@ -154,6 +154,7 @@ export default function NavBar() {
                     />
                     <div className="slider round"></div>
                   </label>
+              </div>
               </div>
 
             </div>
@@ -180,5 +181,6 @@ export default function NavBar() {
         </>
       )}
     </Disclosure>
+    </div>
   )
 }
