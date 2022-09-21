@@ -41,7 +41,7 @@ function Exercises(props) {
     }, [data])
 
     useEffect(() => {
-        // console.log('HEP', filterData)
+    
     }, [filterData]);
 
     //Get current exercises

@@ -69,14 +69,11 @@ app.post('/api/addExercise',async(req,res)=>{
 })
 
 app.post('/api/deleteExercise',async(req,res)=>{
-    const exercisesArray = req.body.exercisesArray //change this to specific exercise
+    const index = req.body.index 
     const email = req.body.email
-    const deleteExercises = await User.updateOne({email},{$pull:{exercises:exercisesArray}})
-    // const user = await User.findOne({
-    //     email
-    // })
-    // console.log(user,'updated user')
-    // return res.json({status:'ok', accountExercises:{user}})
+    console.log(email,index,"inside backend")
+    await User.updateOne({email},{$unset:{"exercises.0":index}}) //set array to null then remove null 
+    await User.updateOne({email},{$pull:{"exercises":null}})
 })
 
 app.listen(1337, ()=>{

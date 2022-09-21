@@ -1,9 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function HEPEditor(props) {
     
     const HEPState = useSelector((state) => state.currentHEP)
+    const navigate = useNavigate()
+
+    const backClickHandler = (e)=>{
+        navigate('/dashboard');
+    }
 
     return (
         <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>
@@ -147,14 +153,17 @@ function HEPEditor(props) {
                                 </div>
                 })}
             </div>
-            {/* <div>
+            <div>
+                <button onClick={backClickHandler} className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Back
+                </button>
                 <button className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Save Routine
                 </button>
                 <button className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Print
                 </button>
-            </div> */}
+            </div>
         </div>
     );
 }

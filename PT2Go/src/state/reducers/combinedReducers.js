@@ -35,6 +35,14 @@ const combinedReducers = (state = initialState, action) => {
           currentHEP: action.payload.currentHEP
 
         }
+    case "DELETE_REDUX_HEP":
+      console.log(state.exercises,"inside deleteReduxHEPREducers")
+      console.log(action.payload.index)
+        return{
+          ...state,
+          exercises:[...state.exercises.slice(0,action.payload.index), ...state.exercises.slice(action.payload.index+1)] //slice retain start to end-1 with 2 variables, slice retain what's after variable if only one parameter is present. 
+          
+        }
     default:
         return state;
   }
