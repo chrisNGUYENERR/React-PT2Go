@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 
 function HEPEditor(props) {
     
-    const HEPState = useSelector((state) => state)
-    console.log(HEPState)
+    const HEPState = useSelector((state) => state.currentHEP)
 
     return (
         <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>
-            {/* <div className='flex flex-col items-center mt-16'>
+            <div className='flex flex-col items-center mt-16'>
                 {HEPState.map(exercise => {
                     const { exerciseName, exerciseImg, exerciseDesc } = exercise;
                         return <div className="flex flex-row w-4/5 justify-between py-5 border-b-2 border-black" key={exerciseName}>
@@ -147,7 +146,7 @@ function HEPEditor(props) {
                                     </div>
                                 </div>
                 })}
-            </div> */}
+            </div>
             {/* <div>
                 <button className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                     Save Routine
