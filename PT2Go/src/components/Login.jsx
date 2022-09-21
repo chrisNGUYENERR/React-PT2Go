@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import { Link , useNavigate } from 'react-router-dom';
 import { useSelector , useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 
 function Login(props) {
@@ -12,8 +13,6 @@ function Login(props) {
 
     const loginState = useSelector((state)=>state.isLoggedIn)
     const navigate = useNavigate()
-    // console.log(loginState, 'loginState')
-    // console.log(state, 'state')
     const dispatch = useDispatch();
 
     const togglePassword = (event) => {
@@ -33,11 +32,13 @@ function Login(props) {
     const loginUser = (e) => {
         e.preventDefault()
         dispatch({type:"FETCH_USER",payload:{email,password}})
-        // console.log(state,'inside loginUser')
+    };
+
+    useEffect(()=>{ //useEffect will run if the dependency (loginState) changes. 
         if(loginState){
             navigate("/dashboard");
         }
-    };
+    },[loginState])
 
     return (
         <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>

@@ -27,10 +27,10 @@ function LandingPage(props) {
             <div className='flex flex-col justify-center items-center w-full h-screen dark:bg-gray-800'>
                 <div className='container pt-10'>
                     <AliceCarousel autoPlay infinite autoPlayInterval={3000} autoPlayStrategy="none" disableButtonsControls animationType="fadeout">
-                        <img src={image1} className='sliderimg' alt='' />
-                        <img src={image2} className='sliderimg' alt='' />
-                        <img src={image3} className='sliderimg' alt='' />
-                        <img src={image4} className='sliderimg' alt='' />
+                        <img src={image1} className='sliderimg w-56 h-56' alt='' />
+                        <img src={image2} className='sliderimg w-56 h-56' alt='' />
+                        <img src={image3} className='sliderimg w-56 h-56' alt='' />
+                        <img src={image4} className='sliderimg w-56 h-56' alt='' />
                     </AliceCarousel>
                 </div>
                 <div className="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

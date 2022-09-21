@@ -1,10 +1,10 @@
 export const exerciseMiddleware = (store)=>{
     return (next) =>{
         return async(action)=>{
+            const {payload} = action
             switch(action.type){
                 case "ADD_HEP":
-                    const {payload} = action
-                    console.log(payload.HEP,"inside MW")
+                    console.log(payload,"inside exerciseMW")
                     const res = await fetch('http://localhost:1337/api/addExercise',{
                         method: 'POST',
                         headers : {
@@ -16,22 +16,20 @@ export const exerciseMiddleware = (store)=>{
                         })
                     })
                     const data = await res.json()
-                    console.log(data,"inside Exercise MW")
                     return data;
                 case "DELETE_HEP":
-                    console.log(payload.HEP,"inside MW")
+                    console.log(payload,"inside delete MW")
                     const resp = await fetch('http://localhost:1337/api/deleteExercise',{
                         method: 'POST',
                         headers : {
                             'Content-Type':'application/json'
                         },
                         body: JSON.stringify({
-                            email:payload.emailState,
-                            exercisesArray:payload.HEP
+                            email:payload.email,
+                            index:payload.index
                         })
                     })
                     const deletedData = await resp.json()
-                    console.log(deletedData,"inside deleteHEP MW")
                     return deletedData;
                 default:
                     next(action)
