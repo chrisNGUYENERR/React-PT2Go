@@ -26,9 +26,15 @@ const combinedReducers = (state = initialState, action) => {
         console.log(action.payload.HEP,'actionpayload')
         return {
           ...state,
-          exercises: action.payload.HEP,
+          ...{exercises: [...state.exercises, action.payload.HEP]},
           currentHEP: action.payload.HEP
         };
+    case "UPDATE_CURRENT_HEP":
+        return {
+          ...state,
+          currentHEP: action.payload.currentHEP
+
+        }
     default:
         return state;
   }
