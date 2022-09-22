@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage';
 import Exercises from './components/Exercises';
 import UserDashboard from './components/UserDashboard';
 import HEPEditor from './components/HEPEditor';
+import AddCustomExercise from './components/AddCustomExercise';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/exercises' element={ <Exercises /> } />
           <Route path='/dashboard' element={<UserDashboard />} />
           <Route path='/hepeditor' element={ <HEPEditor /> } />
+          <Route path='/addcustomexercise' element={ <AddCustomExercise /> } />
         </Routes>
       </div>
     </BrowserRouter>
