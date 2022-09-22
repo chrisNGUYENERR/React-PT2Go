@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 function AddCustomExercise(props) {
     
@@ -10,6 +11,8 @@ function AddCustomExercise(props) {
     const [exName, setExName] = useState('');
     const [exDescription, setExDescription] = useState('');
     const [exCategory, setExCategory] = useState('');
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setImage({
@@ -33,7 +36,7 @@ function AddCustomExercise(props) {
     const handleUpload = async (e) => {
         e.preventDefault();
         console.log(image, exName, exDescription, exCategory)
-        if (image.preview === '' || exName === '' || exDescription === '' || exCategory === '') {
+        if (image.preview === '' || exName === '' || exDescription === '' || exCategory === 'DEFAULT') {
             alert('Missing fields')
         } else {
             const formData = new FormData()
@@ -45,14 +48,14 @@ function AddCustomExercise(props) {
                 category: exCategory,
                 image: image.preview
             });
-
+            navigate('/exercises')
         }
     }
 
 
     return (
         <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>
-            <div className='flex flex-col items-center mt-16'>
+            <div className='flex flex-col items-center pt-16'>
             Create your own exercises!
                 <div className="flex flex-row w-4/5 justify-between py-5">
                     <div className='flex items-center justify-center w-1/4'>
@@ -61,7 +64,7 @@ function AddCustomExercise(props) {
                         ) : (
                             <h5></h5>
                         )}
-                        <input type='file' accept='image/*' onChange={handleChange}/>
+                        <input type='file' accept='image/*' onChange={handleChange} />
                     </div>
                     <div className="p-4 w-1/2">
                         <textarea onChange={handleNameChange} className='w-full h-1/4 resize-none dark:bg-gray-800 dark:text-gray-400' placeholder='Exercise name'>
@@ -70,16 +73,16 @@ function AddCustomExercise(props) {
                         </textarea>
                     </div>
                     <div className='pt-4'>
-                        <select onChange={handleCategoryChange} defaultValue={'DEFAULT'}>
+                        <select onChange={handleCategoryChange} defaultValue={'DEFAULT'} className='dark:bg-gray-800 dark:text-gray-400'>
                             <option value='DEFAULT' disabled>Category:</option>
-                            <option value='shoulder'>Shoulder</option>
-                            <option value='lumbar&thoracic'>Lumbar & Thoracic</option>
-                            <option value='upperlimbs'>Upper Limbs</option>
-                            <option value='lowerlimbs'>Lower Limbs</option>
+                            <option value='Shoulder'>Shoulder</option>
+                            <option value='Lumbar & Thoracic'>Lumbar & Thoracic</option>
+                            <option value='Upper Limbs'>Upper Limbs</option>
+                            <option value='Lower Limbs'>Lower Limbs</option>
                         </select>
                     </div>
                 </div>
-                        <button onClick={handleUpload}>Upload</button>
+                        <button onClick={handleUpload} className='bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded'>Upload</button>
             </div>
         </div>
     );

@@ -8,7 +8,7 @@ function ExerciseCards({ data, addExercise }) {
             {data.map((exercise) => {
                 return <div className="flex flex-col items-center bg-white rounded-lg shadow-lg" key={uuid()}>
                             <div className="p-6">
-                                <img src={exercise.image} key={exercise.name} onClick={addExercise} alt={exercise.description} name={exercise.name} className="shrink h-52 w-52 rounded-t-lg hover:cursor-pointer hover:opacity-50" />
+                                <img src={exercise.image} key={exercise.name} onClick={addExercise} alt={exercise.description} name={exercise.name} className="h-52 w-52 rounded-t-lg hover:cursor-pointer hover:opacity-50" />
                                     {exercise.name}
                             </div>
                         </div>

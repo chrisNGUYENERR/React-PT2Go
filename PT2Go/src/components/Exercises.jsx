@@ -73,12 +73,7 @@ function Exercises(props) {
         })
         setFilterData(newData)
     };
-
-    //Show all exercises
-    // const allExercises = () => {
-    //     setFilterData(data)
-    // }
-
+    
     //Add exercise to state
     const addExercise = (e) => {
             if (HEP.findIndex(name => name.exerciseName === e.target.name) !== -1) {
@@ -86,7 +81,6 @@ function Exercises(props) {
             } else {
                 setHEP(HEP => [...HEP, {exerciseName: e.target.name, exerciseImg: e.target.src, exerciseDesc: e.target.alt}])
             }
-            // console.log('HEP:', HEP)
         };
 
     //Remove exercise from state
@@ -105,16 +99,15 @@ function Exercises(props) {
     }
 
     return (
-        <div className='flex flex-col items-center justify-center dark:bg-gray-800'>
-            <div className='flex flex-row gap-8 items-start justify-center h-3/4 py-12 px-4 sm:px-6 lg:px-8'>
+        <div className='flex flex-col h-screen items-center justify-start pt-16 dark:bg-gray-800'>
+            <div className='flex flex-row gap-8 items-start justify-center py-12 px-4 sm:px-6 lg:px-8'>
                 <div className='flex flex-col w-1/5 border-2 border-black dark:border-gray-400 dark:text-gray-400'>
-                    Categories:
+                    <h3 className='bg-gray-600 text-gray-200 dark:bg-gray-900 dark:text-gray-400'>Category:</h3>
                     {categories.map((area) => {
-                        return <a key={area.name} onClick={filterExercise} href={area.href} className=''>
+                        return <a key={area.name} onClick={filterExercise} href={area.href} className='bg-gray-300 text-gray-600 hover:bg-gray-400 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-gray-300'>
                             {area.name}
                         </a>
                     })}
-                    {/* <a onClick={allExercises} href=''>All</a> */}
                 </div>
                 <div className='flex flex-col w-4/5 border-2 border-black dark:border-gray-400'>
                     <ExerciseCards data={currentExercises} addExercise={addExercise} />
@@ -127,15 +120,15 @@ function Exercises(props) {
                     <span>Total:{HEP.length}</span>
                 </div>
                 <div >
-                    <div className='flex flex-row justify-start h-1/4 w-full gap-0.5 overflow-auto'>
+                    <div className='flex flex-row justify-start h-full w-full gap-0.5 overflow-auto'>
                         {HEP.map((exercise) => {
-                            return <img src={exercise.exerciseImg} name={exercise.exerciseName} onClick={removeExercise} key={exercise.exerciseName} alt='' className='h-36 w-36 border-2 border-black hover:cursor-pointer hover:opacity-50' />
+                            return <img src={exercise.exerciseImg} name={exercise.exerciseName} onClick={removeExercise} key={exercise.exerciseName} alt='' className='h-36 w-36 border-2 border-black hover:cursor-pointer hover:opacity-50 dark:border-gray-400' />
                         })}
                     </div>
                 </div>
             </div>
             <div className='my-5'>
-                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button>
+                <button onClick={submitHandler} className='bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded' type="submit">Save HEP</button>
             </div>
         </div>
     );

@@ -9,7 +9,8 @@ const combinedReducers = (state = initialState, action) => {
           lastname:action.payload.user.lastname,
           email:action.payload.user.email,
           isLoggedIn:action.payload.isLoggedIn,
-          exercises:action.payload.user.exercises
+          exercises:action.payload.user.exercises,
+          occupation:action.payload.user.occupation
         };
     case "RESET_STATE": //clear redux state
         console.log(action.payload,"inside reducer")
@@ -18,6 +19,7 @@ const combinedReducers = (state = initialState, action) => {
           firstname: "", 
           lastname: "", 
           email: "",
+          occupation: "",
           isLoggedIn:false,
           exercises:[],
           currentHEP: []
