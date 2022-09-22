@@ -83,14 +83,14 @@ export default function NavBar() {
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-3 z-10">
+                  <Menu as="div" className={`relative ml-3 z-10" ${navigation[1].login ? "" : "hidden"}`}>
                     <div>
-                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button className=" flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         {/* <span className="sr-only">Open user menu</span> */}
                         <img
-                          className="h-8 w-8 rounded-full"
+                          className="h-8 w-8 rounded-full "
                           src={image}
-                          alt=""
+                          alt="" 
                         />
                       </Menu.Button>
                     </div>
