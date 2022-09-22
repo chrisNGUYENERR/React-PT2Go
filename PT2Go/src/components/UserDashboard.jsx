@@ -36,13 +36,18 @@ function UserDashboard() {
     }
   }, [HEPStatus])
 
+  const handleAddExercise = () => {
+    navigate('/addcustomexercise')
+  }
+
+
   return (
       <div className='w-full h-screen dark:bg-gray-800 dark:text-gray-400'>
         Hi {firstname + ' ' + lastname}
         <div className='flex flex-row w-full gap-5'>
           <div className='flex flex-col w-1/3 border-black border-2'>
             <button>Profile</button>
-            <button>Add Custom Exercise</button>
+            <button onClick={handleAddExercise}>Add Custom Exercise</button>
           </div>
           <div className='flex flex-col w-2/3 border-black border-2'>
             {exercises.map((data, index) => {
