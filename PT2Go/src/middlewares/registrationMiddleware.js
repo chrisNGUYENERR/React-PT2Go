@@ -13,7 +13,8 @@ export const registrationMiddleware = (store)=>{
                             firstname:payload.firstname,
                             lastname:payload.lastname,
                             email:payload.email,
-                            password:payload.password
+                            password:payload.password,
+                            occupation:payload.occupation
                         })
                     })
                 // const data = await res.json()

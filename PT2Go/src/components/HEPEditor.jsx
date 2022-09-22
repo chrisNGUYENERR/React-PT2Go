@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+
 function HEPEditor(props) {
     
     const HEPState = useSelector((state) => state.currentHEP)
@@ -12,11 +13,11 @@ function HEPEditor(props) {
     }
 
     return (
-        <div className='h-screen dark:bg-gray-800 dark:text-gray-400'>
-            <div className='flex flex-col items-center mt-16'>
+        <div className='h-full dark:bg-gray-800 dark:text-gray-400'>
+            <div className='flex flex-col items-center pt-8'>
                 {HEPState.map(exercise => {
                     const { exerciseName, exerciseImg, exerciseDesc } = exercise;
-                        return <div className="flex flex-row w-4/5 justify-between py-5 border-b-2 border-black" key={exerciseName}>
+                        return <div className="flex flex-row w-4/5 justify-between py-5 border-b-2 border-black dark:border-gray-700" key={exerciseName}>
                                     <div className='flex items-center justify-center w-1/4'>
                                         <img
                                             className="object-cover w-48 h-48"
@@ -27,7 +28,7 @@ function HEPEditor(props) {
                                     <div className="p-4 w-1/2">
                                         <textarea className='w-full h-1/4 resize-none dark:bg-gray-800 dark:text-gray-400' defaultValue={exerciseName}>
                                         </textarea>
-                                        <textarea className='w-full h-3/4 resize-none dark:bg-gray-800 dark:text-gray-400' defaultValue={exerciseDesc}>
+                                        <textarea className='w-full h-60 resize-none dark:bg-gray-800 dark:text-gray-400' defaultValue={exerciseDesc}>
                                         </textarea>
                                     </div>
                                     <div className='flex flex-col justify-start items-start w-1/4 text-sm gap-y-3'>
@@ -36,7 +37,7 @@ function HEPEditor(props) {
                                                 Repeat
                                             </div>
                                             <div className='w-1/2'>
-                                                <select className='w-full text-sm py-0'>
+                                                <select className='w-full text-sm py-0 dark:bg-gray-800 dark:text-gray-400'>
                                                     <option>---------------</option>
                                                     <option>1 Time</option>
                                                     <option>2 Times</option>
@@ -66,7 +67,7 @@ function HEPEditor(props) {
                                                 Hold
                                             </div>
                                             <div className='w-1/2'>
-                                                <select className='w-full text-sm py-0'>
+                                                <select className='w-full text-sm py-0 dark:bg-gray-800 dark:text-gray-400'>
                                                     <option>---------------</option>
                                                     <option>1 Second</option>
                                                     <option>2 Seconds</option>
@@ -91,7 +92,7 @@ function HEPEditor(props) {
                                                 Complete
                                             </div>
                                             <div className='w-1/2'>
-                                                <select className='w-full text-sm py-0'>
+                                                <select className='w-full text-sm py-0 dark:bg-gray-800 dark:text-gray-400'>
                                                     <option>---------------</option>
                                                     <option>1 Set</option>
                                                     <option>2 Sets</option>
@@ -111,7 +112,7 @@ function HEPEditor(props) {
                                                 Perform
                                             </div>
                                             <div className='w-1/2'>
-                                                <select className='w-full text-sm py-0'>
+                                                <select className='w-full text-sm py-0 dark:bg-gray-800 dark:text-gray-400'>
                                                     <option>---------------</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -141,7 +142,7 @@ function HEPEditor(props) {
                                                 Times
                                             </div>
                                             <div className='w-1/2'>
-                                                <select className='w-full text-sm py-0'>
+                                                <select className='w-full text-sm py-0 dark:bg-gray-800 dark:text-gray-400'>
                                                     <option>---------------</option>
                                                     <option>a Day</option>
                                                     <option>a Week</option>
@@ -153,15 +154,9 @@ function HEPEditor(props) {
                                 </div>
                 })}
             </div>
-            <div>
-                <button onClick={backClickHandler} className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <div className='flex flex-row justify-between mt-5 ml-5 mr-5 pb-5'>
+                <button onClick={backClickHandler} className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-gray-400 hover:bg-gray-600 py-2 px-4 text-sm font-medium text-white">
                     Back
-                </button>
-                <button className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Save Routine
-                </button>
-                <button className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Print
                 </button>
             </div>
         </div>
