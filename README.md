@@ -1,18 +1,24 @@
-# Getting Started with Create React App
+# PT2Go
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## About Our Project
 
-In the project directory, you can run:
+This is a clone of HEP2Go.com that provide Therapy Professionals with curating personalized home exercise plans for their patients.
 
-### `npm start`
+### Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* HTML
+* JavaScript
+* ReactJS
+* Redux
+* NodeJS
+* ExpressJS
+* MongoDB / Mongoose
+* TailwindCSS
+* Axios
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+
+
 
 ### `npm test`
 
