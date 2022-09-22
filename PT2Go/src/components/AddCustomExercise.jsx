@@ -8,17 +8,22 @@ function AddCustomExercise(props) {
         preview: '',
         raw: ''
     });
+    const [imageURL, setImageURL] = useState('')
     const [exName, setExName] = useState('');
     const [exDescription, setExDescription] = useState('');
     const [exCategory, setExCategory] = useState('');
 
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
+    const handleImageChange = (e) => {
         setImage({
             preview: URL.createObjectURL(e.target.files[0]),
             raw: e.target.files[0]
         });
+    }
+
+    const handleImageURL = (e) => {
+        setImageURL(e.target.value)
     }
 
     const handleNameChange = (e) => {
@@ -35,8 +40,8 @@ function AddCustomExercise(props) {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        console.log(image, exName, exDescription, exCategory)
-        if (image.preview === '' || exName === '' || exDescription === '' || exCategory === 'DEFAULT') {
+        console.log(imageURL, exName, exDescription, exCategory)
+        if (image.preview === '' && imageURL === '' || exName === '' || exDescription === '' || exCategory === 'DEFAULT') {
             alert('Missing fields')
         } else {
             const formData = new FormData()
@@ -46,7 +51,7 @@ function AddCustomExercise(props) {
                 name: exName,
                 description: exDescription,
                 category: exCategory,
-                image: image.preview
+                image: imageURL
             });
             navigate('/exercises')
         }
@@ -58,13 +63,14 @@ function AddCustomExercise(props) {
             <div className='flex flex-col items-center pt-16'>
             Create your own exercises!
                 <div className="flex flex-row w-4/5 justify-between py-5">
-                    <div className='flex items-center justify-center w-1/4'>
+                    <div className='flex flex-col items-center justify-center w-1/4'>
                         {image.preview ? (
                             <img src={image.preview} alt='' className='w-300 h-300' />
                         ) : (
                             <h5></h5>
                         )}
-                        <input type='file' accept='image/*' onChange={handleChange} />
+                        <input type='file' accept='image/*' onChange={handleImageChange} />
+                        <textarea onChange={handleImageURL} className='w-full h-1/4 resize-none dark:bg-gray-800 dark:text-gray-400 mr-28 mt-5' placeholder='Image URL'></textarea>
                     </div>
                     <div className="p-4 w-1/2">
                         <textarea onChange={handleNameChange} className='w-full h-1/4 resize-none dark:bg-gray-800 dark:text-gray-400' placeholder='Exercise name'>
