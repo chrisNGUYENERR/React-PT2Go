@@ -14,7 +14,7 @@ app.use(express.json()) //changing everything from body to JSON.
 mongoose.connect('mongodb+srv://danny-admin:Nguyeners@cluster0.blclp5t.mongodb.net/?retryWrites=true&w=majority')
 
 app.post('/api/register',async (req,res) => {
-    const { firstname, lastname, email, password } = req.body
+    const { firstname, lastname, email, password, occupation } = req.body
     console.log(req.body)
     User.findOne({email:email}).then(user => {
         if (user) {
@@ -26,7 +26,8 @@ app.post('/api/register',async (req,res) => {
                         firstname: firstname,
                         lastname: lastname,
                         email: email,
-                        password: hash
+                        password: hash,
+                        occupation: occupation
                     }) 
                 }) 
             } catch (error) {
